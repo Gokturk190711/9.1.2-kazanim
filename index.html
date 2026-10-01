@@ -1,0 +1,4585 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Oyunlar | 9. Sınıf | Kazanım 2</title>
+
+    <link
+        rel="stylesheet"
+        href="../../../css/style.css"
+    >
+
+
+    <style>
+
+        /* =========================================================
+           T.O.M. OYUN MERKEZİ
+           9. SINIF • 1. ÜNİTE • 2. KAZANIM
+           ========================================================= */
+
+
+        :root {
+
+            --tom-bg:
+                #05070b;
+
+            --tom-bg-soft:
+                #080c12;
+
+            --tom-panel:
+                #0d131b;
+
+            --tom-panel-light:
+                #111923;
+
+            --tom-text:
+                #f4f1e9;
+
+            --tom-muted:
+                #929ca6;
+
+            --tom-muted-2:
+                #727d87;
+
+            --tom-gold:
+                #d6b36a;
+
+            --tom-gold-light:
+                #efd59a;
+
+            --tom-cyan:
+                #74c9d3;
+
+            --tom-cyan-light:
+                #a5dde3;
+
+            --tom-green:
+                #83c9a4;
+
+            --tom-border:
+                rgba(255,255,255,.075);
+
+            --tom-shadow:
+                0 24px 65px rgba(0,0,0,.25);
+
+        }
+
+
+
+        /* =========================================================
+           GENEL
+           ========================================================= */
+
+
+        * {
+
+            box-sizing:
+                border-box;
+
+        }
+
+
+        html {
+
+            margin:
+                0;
+
+            padding:
+                0;
+
+            background:
+                var(--tom-bg);
+
+        }
+
+
+        body {
+
+            margin:
+                0;
+
+            min-height:
+                100vh;
+
+            overflow-x:
+                hidden;
+
+            color:
+                var(--tom-text);
+
+            background:
+
+                radial-gradient(
+                    circle at 11% 7%,
+                    rgba(214,179,106,.045),
+                    transparent 29%
+                ),
+
+                radial-gradient(
+                    circle at 91% 19%,
+                    rgba(116,201,211,.04),
+                    transparent 27%
+                ),
+
+                linear-gradient(
+                    180deg,
+                    #080c12 0%,
+                    #05070b 54%,
+                    #070a0f 100%
+                );
+
+        }
+
+
+        body::before {
+
+            content:
+                "";
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                -5;
+
+            pointer-events:
+                none;
+
+            opacity:
+                .14;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.013) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.013) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                52px 52px;
+
+        }
+
+
+        a {
+
+            -webkit-tap-highlight-color:
+                transparent;
+
+        }
+
+
+        a:focus-visible {
+
+            outline:
+                3px solid rgba(116,201,211,.55);
+
+            outline-offset:
+                4px;
+
+        }
+
+
+
+        /* =========================================================
+           ARKA PLAN
+           ========================================================= */
+
+
+        .game-background {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                -4;
+
+            overflow:
+                hidden;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .game-background::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                460px;
+
+            height:
+                460px;
+
+            right:
+                -270px;
+
+            top:
+                16%;
+
+            border:
+                1px solid rgba(116,201,211,.04);
+
+            border-radius:
+                50%;
+
+        }
+
+
+        .game-background::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                320px;
+
+            height:
+                320px;
+
+            left:
+                -200px;
+
+            bottom:
+                9%;
+
+            border:
+                1px solid rgba(214,179,106,.045);
+
+            border-radius:
+                50%;
+
+        }
+
+
+
+        /* =========================================================
+           ANA YAPI
+           ========================================================= */
+
+
+        .main-content {
+
+            min-height:
+                100vh;
+
+        }
+
+
+        .games-page {
+
+            width:
+                min(
+                    1180px,
+                    calc(100% - 44px)
+                );
+
+            margin:
+                0 auto;
+
+            padding:
+                28px 0 36px;
+
+        }
+
+
+
+        /* =========================================================
+           NAVİGASYON
+           ========================================================= */
+
+
+        .unit-navigation {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                16px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .unit-btn {
+
+            min-height:
+                45px;
+
+            padding:
+                10px 17px;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                9px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius:
+                13px;
+
+            color:
+                #b9c1c9;
+
+            background:
+                rgba(255,255,255,.025);
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            transition:
+                transform .20s ease,
+                color .20s ease,
+                border-color .20s ease,
+                background .20s ease;
+
+        }
+
+
+        .unit-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            color:
+                #ffffff;
+
+            border-color:
+                rgba(116,201,211,.26);
+
+            background:
+                rgba(116,201,211,.045);
+
+        }
+
+
+        .unit-btn.home {
+
+            color:
+                #171208;
+
+            border-color:
+                rgba(240,214,157,.38);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d6b36a,
+                    #efd599
+                );
+
+        }
+
+
+        .unit-btn.home:hover {
+
+            color:
+                #080604;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e1bf76,
+                    #f4dda7
+                );
+
+        }
+
+
+        .nav-icon {
+
+            width:
+                18px;
+
+            height:
+                18px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            flex:
+                0 0 auto;
+
+        }
+
+
+        .nav-icon svg {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.8;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+
+        .games-hero {
+
+            position:
+                relative;
+
+            min-height:
+                365px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius:
+                30px;
+
+            background:
+
+                radial-gradient(
+                    circle at 84% 48%,
+                    rgba(116,201,211,.075),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(214,179,106,.055),
+                    transparent 27%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #111821,
+                    #090d13
+                );
+
+            box-shadow:
+                var(--tom-shadow);
+
+        }
+
+
+        .games-hero::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            pointer-events:
+                none;
+
+            opacity:
+                .24;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.017) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.017) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                58px 58px;
+
+            mask-image:
+                linear-gradient(
+                    90deg,
+                    black,
+                    rgba(0,0,0,.55),
+                    transparent 88%
+                );
+
+        }
+
+
+        .games-hero::after {
+
+            content:
+                "SOURCE";
+
+            position:
+                absolute;
+
+            right:
+                23px;
+
+            bottom:
+                -17px;
+
+            color:
+                rgba(255,255,255,.016);
+
+            font-size:
+                96px;
+
+            line-height:
+                1;
+
+            font-weight:
+                950;
+
+            letter-spacing:
+                -6px;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .games-hero-inner {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            min-height:
+                365px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                minmax(0,1fr) 300px;
+
+            gap:
+                50px;
+
+            align-items:
+                center;
+
+            padding:
+                46px 52px;
+
+        }
+
+
+
+        /* =========================================================
+           HERO SOL
+           ========================================================= */
+
+
+        .hero-copy {
+
+            min-width:
+                0;
+
+        }
+
+
+        .hero-breadcrumb {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                21px;
+
+            color:
+                #858f99;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1.25px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .hero-breadcrumb span {
+
+            color:
+                var(--tom-gold-light);
+
+        }
+
+
+        .hero-breadcrumb i {
+
+            width:
+                4px;
+
+            height:
+                4px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,.22);
+
+        }
+
+
+
+        /* =========================================================
+           ETİKET
+           ========================================================= */
+
+
+        .game-label {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                14px;
+
+            padding:
+                8px 12px;
+
+            border:
+                1px solid rgba(116,201,211,.18);
+
+            border-radius:
+                999px;
+
+            color:
+                var(--tom-cyan-light);
+
+            background:
+                rgba(116,201,211,.045);
+
+            font-size:
+                10px;
+
+            font-weight:
+                850;
+
+            letter-spacing:
+                1.15px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .game-label-icon {
+
+            width:
+                17px;
+
+            height:
+                17px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+        }
+
+
+        .game-label-icon svg {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.8;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+
+        /* =========================================================
+           HERO BAŞLIK
+           ========================================================= */
+
+
+        .hero-copy h1 {
+
+            max-width:
+                700px;
+
+            margin:
+                0 0 15px;
+
+            color:
+                #f5f1e9;
+
+            font-size:
+                clamp(
+                    34px,
+                    4.5vw,
+                    56px
+                );
+
+            line-height:
+                1.03;
+
+            letter-spacing:
+                -2px;
+
+        }
+
+
+        .hero-copy h1 span {
+
+            color:
+                var(--tom-cyan-light);
+
+        }
+
+
+        .hero-description {
+
+            max-width:
+                670px;
+
+            margin:
+                0;
+
+            color:
+                #98a2ac;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.75;
+
+        }
+
+
+
+        /* =========================================================
+           HERO META
+           ========================================================= */
+
+
+        .hero-meta {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                24px;
+
+        }
+
+
+        .hero-meta-item {
+
+            min-height:
+                34px;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            padding:
+                7px 11px;
+
+            border:
+                1px solid rgba(255,255,255,.06);
+
+            border-radius:
+                10px;
+
+            color:
+                #909aa4;
+
+            background:
+                rgba(255,255,255,.021);
+
+            font-size:
+                11px;
+
+            font-weight:
+                650;
+
+        }
+
+
+        .hero-meta-item strong {
+
+            color:
+                #c7ced3;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .meta-dot {
+
+            width:
+                6px;
+
+            height:
+                6px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--tom-green);
+
+            box-shadow:
+                0 0 9px rgba(131,201,164,.32);
+
+        }
+
+
+
+        /* =========================================================
+           HERO SAĞ
+           KAYNAK ANALİZİ GRAFİĞİ
+           ========================================================= */
+
+
+        .source-console {
+
+            position:
+                relative;
+
+            justify-self:
+                end;
+
+            width:
+                265px;
+
+            height:
+                265px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+        }
+
+
+        .source-ring {
+
+            position:
+                absolute;
+
+            border-radius:
+                50%;
+
+        }
+
+
+        .source-ring.one {
+
+            inset:
+                0;
+
+            border:
+                1px solid rgba(116,201,211,.12);
+
+        }
+
+
+        .source-ring.two {
+
+            inset:
+                20px;
+
+            border:
+                1px dashed rgba(214,179,106,.15);
+
+        }
+
+
+        .source-ring.three {
+
+            inset:
+                47px;
+
+            border:
+                1px solid rgba(255,255,255,.055);
+
+        }
+
+
+        .source-line {
+
+            position:
+                absolute;
+
+            width:
+                1px;
+
+            top:
+                9%;
+
+            bottom:
+                9%;
+
+            left:
+                50%;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(116,201,211,.14),
+                    transparent
+                );
+
+        }
+
+
+        .source-line.horizontal {
+
+            width:
+                auto;
+
+            height:
+                1px;
+
+            left:
+                9%;
+
+            right:
+                9%;
+
+            top:
+                50%;
+
+            bottom:
+                auto;
+
+        }
+
+
+
+        /* =========================================================
+           BELGE
+           ========================================================= */
+
+
+        .source-document {
+
+            position:
+                absolute;
+
+            z-index:
+                2;
+
+            width:
+                118px;
+
+            height:
+                148px;
+
+            padding:
+                20px 16px;
+
+            border:
+                1px solid rgba(214,179,106,.22);
+
+            border-radius:
+                16px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(214,179,106,.09),
+                    rgba(255,255,255,.025)
+                ),
+                #10161e;
+
+            box-shadow:
+                0 18px 45px rgba(0,0,0,.28);
+
+            transform:
+                rotate(-5deg);
+
+        }
+
+
+        .source-document::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            right:
+                -1px;
+
+            top:
+                -1px;
+
+            width:
+                31px;
+
+            height:
+                31px;
+
+            border-left:
+                1px solid rgba(214,179,106,.18);
+
+            border-bottom:
+                1px solid rgba(214,179,106,.18);
+
+            background:
+                #0b1017;
+
+            clip-path:
+                polygon(
+                    100% 0,
+                    100% 100%,
+                    0 0
+                );
+
+        }
+
+
+        .document-title-line {
+
+            width:
+                58%;
+
+            height:
+                4px;
+
+            margin-bottom:
+                16px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(239,213,154,.68);
+
+        }
+
+
+        .document-line {
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            margin-bottom:
+                8px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,255,255,.12);
+
+        }
+
+
+        .document-line.small {
+
+            width:
+                72%;
+
+        }
+
+
+        .document-line.medium {
+
+            width:
+                86%;
+
+        }
+
+
+        .document-seal {
+
+            position:
+                absolute;
+
+            left:
+                17px;
+
+            bottom:
+                17px;
+
+            width:
+                28px;
+
+            height:
+                28px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid rgba(214,179,106,.33);
+
+            border-radius:
+                50%;
+
+            color:
+                var(--tom-gold);
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+        }
+
+
+
+        /* =========================================================
+           BÜYÜTEÇ
+           ========================================================= */
+
+
+        .source-magnifier {
+
+            position:
+                absolute;
+
+            z-index:
+                4;
+
+            right:
+                39px;
+
+            bottom:
+                47px;
+
+            width:
+                83px;
+
+            height:
+                83px;
+
+            border:
+                3px solid var(--tom-cyan);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(116,201,211,.04);
+
+            box-shadow:
+                0 0 24px rgba(116,201,211,.10);
+
+        }
+
+
+        .source-magnifier::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                49px;
+
+            height:
+                6px;
+
+            right:
+                -36px;
+
+            bottom:
+                -17px;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--tom-cyan);
+
+            transform:
+                rotate(47deg);
+
+            transform-origin:
+                left center;
+
+        }
+
+
+        .magnifier-mark {
+
+            position:
+                absolute;
+
+            inset:
+                14px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid rgba(116,201,211,.15);
+
+            border-radius:
+                50%;
+
+            color:
+                rgba(165,221,227,.7);
+
+        }
+
+
+        .magnifier-mark svg {
+
+            width:
+                29px;
+
+            height:
+                29px;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.6;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+
+        /* =========================================================
+           NOKTALAR
+           ========================================================= */
+
+
+        .source-dot {
+
+            position:
+                absolute;
+
+            z-index:
+                6;
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--tom-cyan);
+
+            box-shadow:
+                0 0 12px rgba(116,201,211,.38);
+
+        }
+
+
+        .source-dot.one {
+
+            top:
+                5px;
+
+            left:
+                calc(50% - 3px);
+
+        }
+
+
+        .source-dot.two {
+
+            right:
+                5px;
+
+            top:
+                calc(50% - 3px);
+
+            background:
+                var(--tom-gold);
+
+            box-shadow:
+                0 0 12px rgba(214,179,106,.38);
+
+        }
+
+
+        .source-dot.three {
+
+            bottom:
+                5px;
+
+            left:
+                calc(50% - 3px);
+
+        }
+
+
+        .source-caption {
+
+            position:
+                absolute;
+
+            bottom:
+                23px;
+
+            left:
+                50%;
+
+            z-index:
+                8;
+
+            transform:
+                translateX(-50%);
+
+            white-space:
+                nowrap;
+
+            padding:
+                5px 9px;
+
+            border:
+                1px solid rgba(255,255,255,.06);
+
+            border-radius:
+                999px;
+
+            color:
+                #808b95;
+
+            background:
+                #0c1219;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1.3px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+
+        /* =========================================================
+           OYUN LİSTESİ
+           ========================================================= */
+
+
+        .games-section {
+
+            margin-top:
+                58px;
+
+        }
+
+
+        .section-top {
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                30px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .section-heading {
+
+            max-width:
+                720px;
+
+        }
+
+
+        .section-kicker {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                9px;
+
+            color:
+                #838e98;
+
+            font-size:
+                10px;
+
+            font-weight:
+                850;
+
+            letter-spacing:
+                1.5px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .section-kicker::before {
+
+            content:
+                "";
+
+            width:
+                27px;
+
+            height:
+                1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--tom-gold),
+                    var(--tom-cyan)
+                );
+
+        }
+
+
+        .section-heading h2 {
+
+            margin:
+                0 0 9px;
+
+            color:
+                #f1eee7;
+
+            font-size:
+                clamp(
+                    27px,
+                    3vw,
+                    37px
+                );
+
+            line-height:
+                1.15;
+
+            letter-spacing:
+                -1px;
+
+        }
+
+
+        .section-heading p {
+
+            margin:
+                0;
+
+            color:
+                #8d97a1;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+
+        /* =========================================================
+           SAYAÇ
+           ========================================================= */
+
+
+        .game-counter {
+
+            flex:
+                0 0 auto;
+
+            min-width:
+                128px;
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid rgba(255,255,255,.065);
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(255,255,255,.018);
+
+            text-align:
+                right;
+
+        }
+
+
+        .game-counter span {
+
+            display:
+                block;
+
+            margin-bottom:
+                3px;
+
+            color:
+                #737e88;
+
+            font-size:
+                8px;
+
+            font-weight:
+                850;
+
+            letter-spacing:
+                1.2px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .game-counter strong {
+
+            color:
+                var(--tom-cyan-light);
+
+            font-size:
+                22px;
+
+            line-height:
+                1;
+
+        }
+
+
+
+        /* =========================================================
+           GRID
+           ========================================================= */
+
+
+        .game-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                18px;
+
+        }
+
+
+
+        /* =========================================================
+           OYUN KARTI
+           ========================================================= */
+
+
+        .game-card {
+
+            --game-rgb:
+                116,201,211;
+
+            --game-color:
+                var(--tom-cyan);
+
+            position:
+                relative;
+
+            min-height:
+                330px;
+
+            padding:
+                30px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid rgba(255,255,255,.075);
+
+            border-radius:
+                25px;
+
+            color:
+                inherit;
+
+            text-decoration:
+                none;
+
+            background:
+
+                radial-gradient(
+                    circle at 95% 95%,
+                    rgba(var(--game-rgb),.075),
+                    transparent 39%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.038),
+                    rgba(255,255,255,.012)
+                );
+
+            transition:
+                transform .23s ease,
+                border-color .23s ease,
+                box-shadow .23s ease,
+                background .23s ease;
+
+        }
+
+
+        .game-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                0;
+
+            right:
+                0;
+
+            top:
+                0;
+
+            height:
+                2px;
+
+            opacity:
+                .66;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--game-color),
+                    transparent
+                );
+
+        }
+
+
+        .game-card::after {
+
+            content:
+                "01";
+
+            position:
+                absolute;
+
+            right:
+                -3px;
+
+            bottom:
+                -32px;
+
+            color:
+                rgba(var(--game-rgb),.035);
+
+            font-size:
+                145px;
+
+            font-weight:
+                950;
+
+            line-height:
+                1;
+
+            letter-spacing:
+                -9px;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .game-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(var(--game-rgb),.29);
+
+            background:
+
+                radial-gradient(
+                    circle at 95% 95%,
+                    rgba(var(--game-rgb),.115),
+                    transparent 42%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.05),
+                    rgba(255,255,255,.015)
+                );
+
+            box-shadow:
+                0 26px 60px rgba(0,0,0,.21);
+
+        }
+
+
+
+        /* =========================================================
+           KART ÜST
+           ========================================================= */
+
+
+        .game-card-top {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .game-icon {
+
+            width:
+                68px;
+
+            height:
+                68px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid rgba(var(--game-rgb),.18);
+
+            border-radius:
+                19px;
+
+            color:
+                var(--game-color);
+
+            background:
+                rgba(var(--game-rgb),.055);
+
+            transition:
+                transform .22s ease,
+                background .22s ease;
+
+        }
+
+
+        .game-card:hover .game-icon {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(var(--game-rgb),.09);
+
+        }
+
+
+        .game-icon svg {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.7;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+        .game-number {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-end;
+
+        }
+
+
+        .game-number span {
+
+            margin-bottom:
+                3px;
+
+            color:
+                #6e7983;
+
+            font-size:
+                8px;
+
+            font-weight:
+                850;
+
+            letter-spacing:
+                1.1px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .game-number strong {
+
+            color:
+                rgba(var(--game-rgb),.33);
+
+            font-size:
+                43px;
+
+            font-weight:
+                950;
+
+            line-height:
+                .9;
+
+            letter-spacing:
+                -3px;
+
+        }
+
+
+
+        /* =========================================================
+           ETİKETLER
+           ========================================================= */
+
+
+        .game-tags {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            margin-bottom:
+                13px;
+
+        }
+
+
+        .game-tag {
+
+            padding:
+                6px 9px;
+
+            border:
+                1px solid rgba(var(--game-rgb),.13);
+
+            border-radius:
+                999px;
+
+            color:
+                var(--game-color);
+
+            background:
+                rgba(var(--game-rgb),.035);
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .8px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .game-tag.neutral {
+
+            color:
+                #8d98a2;
+
+            border-color:
+                rgba(255,255,255,.06);
+
+            background:
+                rgba(255,255,255,.018);
+
+        }
+
+
+
+        /* =========================================================
+           KART İÇERİĞİ
+           ========================================================= */
+
+
+        .game-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            flex:
+                1;
+
+        }
+
+
+        .game-content h3 {
+
+            margin:
+                0 0 11px;
+
+            color:
+                #f3efe7;
+
+            font-size:
+                28px;
+
+            line-height:
+                1.15;
+
+            letter-spacing:
+                -.9px;
+
+        }
+
+
+        .game-content p {
+
+            max-width:
+                470px;
+
+            margin:
+                0;
+
+            color:
+                #929ca6;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.68;
+
+        }
+
+
+
+        /* =========================================================
+           KART ALT
+           ========================================================= */
+
+
+        .game-card-bottom {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-top:
+                auto;
+
+            padding-top:
+                27px;
+
+        }
+
+
+        .game-start {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            color:
+                #cbd1d4;
+
+            font-size:
+                12px;
+
+            font-weight:
+                750;
+
+        }
+
+
+        .game-start-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--tom-green);
+
+            box-shadow:
+                0 0 8px rgba(131,201,164,.3);
+
+        }
+
+
+        .game-arrow {
+
+            width:
+                44px;
+
+            height:
+                44px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            flex:
+                0 0 auto;
+
+            border:
+                1px solid rgba(var(--game-rgb),.17);
+
+            border-radius:
+                50%;
+
+            color:
+                var(--game-color);
+
+            background:
+                rgba(var(--game-rgb),.045);
+
+            transition:
+                transform .22s ease,
+                background .22s ease;
+
+        }
+
+
+        .game-arrow svg {
+
+            width:
+                19px;
+
+            height:
+                19px;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.9;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+        .game-card:hover .game-arrow {
+
+            transform:
+                translateX(4px);
+
+            background:
+                rgba(var(--game-rgb),.09);
+
+        }
+
+
+
+        /* =========================================================
+           YENİ OYUN KARTI
+           ========================================================= */
+
+
+        .coming-card {
+
+            position:
+                relative;
+
+            min-height:
+                330px;
+
+            padding:
+                30px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
+
+            border:
+                1px dashed rgba(255,255,255,.07);
+
+            border-radius:
+                25px;
+
+            text-align:
+                center;
+
+            background:
+                rgba(255,255,255,.012);
+
+        }
+
+
+        .coming-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                250px;
+
+            height:
+                250px;
+
+            border:
+                1px solid rgba(214,179,106,.035);
+
+            border-radius:
+                50%;
+
+            box-shadow:
+                0 0 0 34px rgba(214,179,106,.009),
+                0 0 0 68px rgba(214,179,106,.005);
+
+        }
+
+
+        .coming-icon {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                17px;
+
+            border:
+                1px solid rgba(214,179,106,.12);
+
+            border-radius:
+                17px;
+
+            color:
+                #9b8150;
+
+            background:
+                rgba(214,179,106,.025);
+
+        }
+
+
+        .coming-icon svg {
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.6;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+        .coming-card strong {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #818c96;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .coming-card span {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            max-width:
+                330px;
+
+            color:
+                #67727c;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+
+        /* =========================================================
+           BİLGİ ŞERİDİ
+           ========================================================= */
+
+
+        .page-note {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                13px;
+
+            margin-top:
+                18px;
+
+            padding:
+                15px 17px;
+
+            border:
+                1px solid rgba(255,255,255,.055);
+
+            border-radius:
+                14px;
+
+            color:
+                #7f8993;
+
+            background:
+                rgba(255,255,255,.015);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        .page-note-icon {
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            flex:
+                0 0 auto;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid rgba(116,201,211,.14);
+
+            border-radius:
+                9px;
+
+            color:
+                var(--tom-cyan);
+
+            background:
+                rgba(116,201,211,.035);
+
+        }
+
+
+        .page-note-icon svg {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            fill:
+                none;
+
+            stroke:
+                currentColor;
+
+            stroke-width:
+                1.8;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+
+        .unit-footer {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr auto 1fr;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+            margin-top:
+                67px;
+
+            padding:
+                25px 2px 10px;
+
+            border-top:
+                1px solid rgba(255,255,255,.06);
+
+            color:
+                #6f7983;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .unit-footer .teacher {
+
+            color:
+                #afb7be;
+
+            font-weight:
+                650;
+
+            text-align:
+                center;
+
+        }
+
+
+        .footer-right {
+
+            text-align:
+                right;
+
+        }
+
+
+        .footer-right span {
+
+            color:
+                var(--tom-gold);
+
+        }
+
+
+
+        /* =========================================================
+           RESPONSIVE 900
+           ========================================================= */
+
+
+        @media
+        (max-width: 900px) {
+
+
+            .games-hero-inner {
+
+                grid-template-columns:
+                    minmax(0,1fr) 220px;
+
+                gap:
+                    30px;
+
+                padding:
+                    42px 36px;
+
+            }
+
+
+            .source-console {
+
+                width:
+                    215px;
+
+                height:
+                    215px;
+
+            }
+
+
+            .source-document {
+
+                width:
+                    96px;
+
+                height:
+                    124px;
+
+            }
+
+
+            .source-magnifier {
+
+                width:
+                    67px;
+
+                height:
+                    67px;
+
+                right:
+                    29px;
+
+                bottom:
+                    39px;
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           RESPONSIVE 760
+           ========================================================= */
+
+
+        @media
+        (max-width: 760px) {
+
+
+            .games-page {
+
+                width:
+                    min(
+                        calc(100% - 28px),
+                        1180px
+                    );
+
+            }
+
+
+            .games-hero-inner {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .source-console {
+
+                justify-self:
+                    center;
+
+                width:
+                    205px;
+
+                height:
+                    205px;
+
+                margin-top:
+                    4px;
+
+            }
+
+
+            .section-top {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .game-counter {
+
+                text-align:
+                    left;
+
+            }
+
+
+            .game-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .unit-footer {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align:
+                    center;
+
+            }
+
+
+            .footer-right {
+
+                text-align:
+                    center;
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           RESPONSIVE 520
+           ========================================================= */
+
+
+        @media
+        (max-width: 520px) {
+
+
+            .games-page {
+
+                width:
+                    min(
+                        calc(100% - 20px),
+                        1180px
+                    );
+
+                padding-top:
+                    14px;
+
+            }
+
+
+            .unit-navigation {
+
+                margin-bottom:
+                    14px;
+
+            }
+
+
+            .unit-btn {
+
+                padding-inline:
+                    11px;
+
+                font-size:
+                    12px;
+
+            }
+
+
+            .games-hero {
+
+                min-height:
+                    0;
+
+                border-radius:
+                    22px;
+
+            }
+
+
+            .games-hero::after {
+
+                font-size:
+                    58px;
+
+                bottom:
+                    -3px;
+
+            }
+
+
+            .games-hero-inner {
+
+                min-height:
+                    0;
+
+                padding:
+                    31px 20px 28px;
+
+            }
+
+
+            .hero-breadcrumb {
+
+                font-size:
+                    8px;
+
+                letter-spacing:
+                    .9px;
+
+            }
+
+
+            .hero-copy h1 {
+
+                font-size:
+                    37px;
+
+                letter-spacing:
+                    -1.5px;
+
+            }
+
+
+            .hero-description {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .hero-meta {
+
+                display:
+                    grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .hero-meta-item:last-child {
+
+                grid-column:
+                    1 / -1;
+
+            }
+
+
+            .source-console {
+
+                width:
+                    180px;
+
+                height:
+                    180px;
+
+            }
+
+
+            .source-document {
+
+                width:
+                    85px;
+
+                height:
+                    110px;
+
+                padding:
+                    15px 12px;
+
+            }
+
+
+            .source-magnifier {
+
+                width:
+                    57px;
+
+                height:
+                    57px;
+
+                right:
+                    20px;
+
+                bottom:
+                    31px;
+
+            }
+
+
+            .source-magnifier::after {
+
+                width:
+                    38px;
+
+                right:
+                    -29px;
+
+                bottom:
+                    -14px;
+
+            }
+
+
+            .source-caption {
+
+                bottom:
+                    11px;
+
+            }
+
+
+            .games-section {
+
+                margin-top:
+                    43px;
+
+            }
+
+
+            .game-card {
+
+                min-height:
+                    310px;
+
+                padding:
+                    22px;
+
+                border-radius:
+                    20px;
+
+            }
+
+
+            .game-icon {
+
+                width:
+                    58px;
+
+                height:
+                    58px;
+
+                border-radius:
+                    16px;
+
+            }
+
+
+            .game-icon svg {
+
+                width:
+                    29px;
+
+                height:
+                    29px;
+
+            }
+
+
+            .game-content h3 {
+
+                font-size:
+                    24px;
+
+            }
+
+
+            .game-content p {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .coming-card {
+
+                min-height:
+                    260px;
+
+                padding:
+                    22px;
+
+                border-radius:
+                    20px;
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           HAREKET AZALTMA
+           ========================================================= */
+
+
+        @media
+        (prefers-reduced-motion: reduce) {
+
+
+            * {
+
+                transition-duration:
+                    .001ms !important;
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           TAR.9.1.2 — 5 OYUN KARTI / TEK SATIR MASAÜSTÜ DÜZENİ
+           ========================================================= */
+        .game-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+        .game-card { min-height: 325px; padding: 18px; border-radius: 20px; }
+        .game-card::after { content: none; }
+        .game-card-top { gap: 10px; margin-bottom: 17px; }
+        .game-icon { width: 54px; height: 54px; border-radius: 16px; }
+        .game-icon svg { width: 27px; height: 27px; }
+        .game-number strong { font-size: 34px; }
+        .game-tags { gap: 5px; margin-bottom: 11px; }
+        .game-tag { padding: 5px 7px; font-size: 7px; letter-spacing: .55px; }
+        .game-content h3 { margin-bottom: 9px; font-size: 21px; line-height: 1.12; letter-spacing: -.55px; }
+        .game-content p { font-size: 12px; line-height: 1.58; }
+        .game-card-bottom { padding-top: 18px; }
+        .game-start { font-size: 10px; }
+        .game-arrow { width: 36px; height: 36px; }
+        .game-arrow svg { width: 16px; height: 16px; }
+        @media (max-width: 1080px) { .game-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (max-width: 760px) { .game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 520px) { .game-grid { grid-template-columns: 1fr; } }
+
+
+
+        /* =========================================================
+           KAPAK GÖRSELLİ OYUN KARTLARI + MODAL DETAY PANELİ
+           ========================================================= */
+
+        .game-cover-grid {
+            align-items: stretch;
+        }
+
+        .game-card.game-cover-card {
+            height: 325px;
+            min-height: 325px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            cursor: default;
+        }
+
+        .game-card.game-cover-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .game-cover-wrap {
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.075);
+            border-radius: 15px;
+            background: #090d13;
+        }
+
+        .game-cover-image {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .game-cover-image.is-missing {
+            display: none;
+        }
+
+        .game-cover-fallback {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 18px 12px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(var(--game-rgb),.12), transparent 44%),
+                linear-gradient(155deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+        }
+
+        .game-cover-fallback::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(var(--game-rgb),.12);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .game-cover-fallback .cover-number {
+            color: rgba(var(--game-rgb),.62);
+            font-size: 34px;
+            line-height: 1;
+            font-weight: 950;
+            letter-spacing: -2px;
+        }
+
+        .game-cover-fallback strong {
+            position: relative;
+            z-index: 1;
+            max-width: 160px;
+            color: #eeeae1;
+            font-size: 15px;
+            line-height: 1.22;
+        }
+
+        .game-cover-fallback small {
+            position: relative;
+            z-index: 1;
+            color: #6f7983;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+        }
+
+        .game-open-btn {
+            width: 100%;
+            min-height: 38px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border: 1px solid rgba(var(--game-rgb),.17);
+            border-radius: 12px;
+            color: #d8dde0;
+            background: rgba(var(--game-rgb),.045);
+            font: inherit;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .25px;
+            cursor: pointer;
+            transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+        }
+
+        .game-open-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: var(--game-color);
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform .2s ease;
+        }
+
+        .game-open-btn:hover,
+        .game-open-btn:focus-visible {
+            color: #fff;
+            border-color: rgba(var(--game-rgb),.34);
+            background: rgba(var(--game-rgb),.095);
+            outline: none;
+        }
+
+        .game-open-btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* =========================================================
+           OYUN DETAY MODALI — EKRAN ÜZERİNDE BÜYÜYEN PANEL
+           ========================================================= */
+
+        .game-detail-shell {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            background: rgba(3, 6, 10, .74);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: opacity .28s ease, visibility .28s ease;
+        }
+
+        .game-detail-shell.is-open {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .game-detail-panel {
+            --modal-rgb: 116,201,211;
+            --modal-color: var(--tom-cyan);
+            position: relative;
+            width: min(1240px, 100%);
+            height: min(760px, calc(100vh - 32px));
+            display: grid;
+            grid-template-columns: minmax(280px, 340px) minmax(0,1fr);
+            gap: 34px;
+            padding: 28px;
+            overflow: hidden;
+            overscroll-behavior: contain;
+            border: 1px solid rgba(255,255,255,.11);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 7% 12%, rgba(214,179,106,.08), transparent 30%),
+                radial-gradient(circle at 94% 86%, rgba(var(--modal-rgb),.09), transparent 32%),
+                linear-gradient(145deg, #121a24 0%, #0a0f16 62%, #080c12 100%);
+            box-shadow: 0 38px 110px rgba(0,0,0,.58);
+            transform: scale(.82) translateY(18px);
+            opacity: 0;
+            transform-origin: center center;
+            transition: transform .34s cubic-bezier(.2,.82,.2,1), opacity .24s ease;
+        }
+
+        .game-detail-shell.is-open .game-detail-panel {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .game-detail-panel::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--tom-gold), var(--modal-color), transparent);
+            opacity: .85;
+        }
+
+        .game-detail-panel::after {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            right: -175px;
+            bottom: -190px;
+            border: 1px solid rgba(var(--modal-rgb),.07);
+            border-radius: 50%;
+            box-shadow: 0 0 0 42px rgba(var(--modal-rgb),.018), 0 0 0 84px rgba(var(--modal-rgb),.008);
+            pointer-events: none;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 10;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 14px;
+            color: #b6bec5;
+            background: rgba(255,255,255,.035);
+            box-shadow: 0 10px 25px rgba(0,0,0,.16);
+            cursor: pointer;
+            transition: transform .2s ease, color .2s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .detail-close:hover,
+        .detail-close:focus-visible {
+            transform: rotate(5deg);
+            color: #fff;
+            border-color: rgba(var(--modal-rgb),.30);
+            background: rgba(var(--modal-rgb),.10);
+            outline: none;
+        }
+
+        .detail-close svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+        }
+
+        .detail-cover {
+            position: relative;
+            width: 100%;
+            max-height: calc(100vh - 96px);
+            aspect-ratio: 4 / 5;
+            align-self: start;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 21px;
+            background: #080c12;
+            box-shadow: 0 22px 45px rgba(0,0,0,.28);
+        }
+
+        .detail-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.025);
+        }
+
+        .detail-cover img {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .detail-cover img.is-missing {
+            display: none;
+        }
+
+        .detail-cover-fallback {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            padding: 25px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 18%, rgba(var(--modal-rgb),.16), transparent 44%),
+                linear-gradient(155deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+        }
+
+        .detail-cover-fallback span {
+            color: var(--modal-color);
+            font-size: 48px;
+            font-weight: 950;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .detail-cover-fallback strong {
+            color: #ece8df;
+            font-size: 18px;
+            line-height: 1.28;
+        }
+
+        .detail-content {
+            position: relative;
+            z-index: 2;
+            min-width: 0;
+            min-height: 0;
+            padding: 2px 32px 0 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 8px;
+            padding: 6px 9px;
+            border: 1px solid rgba(var(--modal-rgb),.15);
+            border-radius: 999px;
+            color: var(--modal-color);
+            background: rgba(var(--modal-rgb),.04);
+            font-size: 13.5px;
+            font-weight: 850;
+            letter-spacing: 1.3px;
+        }
+
+        .detail-content h3 {
+            margin: 0 0 12px;
+            color: #f4f0e8;
+            font-size: clamp(38px,4vw,52px);
+            line-height: 1.03;
+            letter-spacing: -1.7px;
+        }
+
+        .detail-section {
+            position: relative;
+            margin-bottom: 11px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,.065);
+            border-radius: 16px;
+            background: rgba(255,255,255,.018);
+        }
+
+        .detail-section:last-of-type {
+            margin-bottom: 12px;
+        }
+
+        .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            color: var(--tom-gold-light);
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 1.15px;
+            text-transform: uppercase;
+        }
+
+        .detail-label::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--modal-color);
+            box-shadow: 0 0 10px rgba(var(--modal-rgb),.40);
+        }
+
+        .detail-section p {
+            margin: 0;
+            color: #a1aab2;
+            font-size: 16px;
+            line-height: 1.52;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .detail-section:first-of-type p {
+            -webkit-line-clamp: 5;
+        }
+
+        .detail-section:nth-of-type(2) p {
+            -webkit-line-clamp: 4;
+        }
+
+        .detail-credits {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin: 0 0 12px;
+        }
+
+        .detail-credit {
+            min-height: 56px;
+            padding: 11px 13px;
+            border: 1px solid rgba(255,255,255,.065);
+            border-radius: 14px;
+            background: rgba(255,255,255,.018);
+        }
+
+        .detail-credit span {
+            display: block;
+            margin-bottom: 4px;
+            color: #7f8993;
+            font-size: 13.5px;
+            font-weight: 850;
+            letter-spacing: .9px;
+            text-transform: uppercase;
+        }
+
+        .detail-credit strong {
+            color: #eee9df;
+            font-size: 16px;
+            font-weight: 850;
+        }
+
+        .detail-start-btn {
+            width: fit-content;
+            min-height: 44px;
+            margin-top: auto;
+            padding: 10px 17px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(239,213,154,.38);
+            border-radius: 14px;
+            color: #161005;
+            background: linear-gradient(135deg, #d6b36a, #efd59a);
+            box-shadow: 0 14px 28px rgba(214,179,106,.12);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 900;
+            transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+        }
+
+        .detail-start-btn:hover,
+        .detail-start-btn:focus-visible {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 18px 34px rgba(214,179,106,.17);
+            outline: none;
+        }
+
+        .detail-start-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        body.game-modal-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .game-detail-shell {
+                padding: 22px;
+            }
+
+            .game-detail-panel {
+                grid-template-columns: minmax(230px, 285px) minmax(0,1fr);
+                gap: 22px;
+                padding: 25px;
+                height: calc(100vh - 44px);
+            }
+
+            .detail-content {
+                padding-right: 42px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .game-detail-shell {
+                padding: 12px;
+                align-items: center;
+            }
+
+            .game-detail-panel {
+                width: 100%;
+                height: calc(100vh - 24px);
+                grid-template-columns: 1fr;
+                grid-template-rows: auto minmax(0, 1fr);
+                gap: 12px;
+                padding: 18px;
+                border-radius: 22px;
+            }
+
+            .detail-close {
+                top: 12px;
+                right: 12px;
+                width: 43px;
+                height: 43px;
+            }
+
+            .detail-cover {
+                width: min(260px, 74%);
+                justify-self: center;
+                max-height: 35vh;
+            }
+
+            .detail-content {
+                padding: 0;
+            }
+
+            .detail-kicker {
+                margin-top: 2px;
+            }
+
+            .detail-content h3 {
+                padding-right: 42px;
+                margin-bottom: 17px;
+                font-size: 30px;
+            }
+
+            .detail-section {
+                padding: 14px 15px;
+            }
+
+            .detail-section p {
+                font-size: 13px;
+                line-height: 1.64;
+            }
+
+            .detail-start-btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .game-detail-shell,
+            .game-detail-panel {
+                transition: none !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<div
+    class="game-background"
+    aria-hidden="true"
+></div>
+
+
+<main class="main-content">
+
+
+    <div class="games-page">
+
+
+
+        <!-- =====================================================
+             ÜST NAVİGASYON
+             ===================================================== -->
+
+
+        <nav class="unit-navigation">
+
+
+            <a
+                href="kazanim-2.html"
+                class="unit-btn"
+            >
+
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M15 18l-6-6 6-6"></path>
+
+                        <path d="M9 12h10"></path>
+
+                    </svg>
+
+
+                </span>
+
+
+                <span>
+
+                    Kazanıma Dön
+
+                </span>
+
+
+            </a>
+
+
+
+            <a
+                href="../../../index.html"
+                class="unit-btn home"
+            >
+
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M3 11.5L12 4l9 7.5"></path>
+
+                        <path d="M5.5 10.5V20h13v-9.5"></path>
+
+                        <path d="M9.5 20v-6h5v6"></path>
+
+                    </svg>
+
+
+                </span>
+
+
+                <span>
+
+                    Ana Sayfa
+
+                </span>
+
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- =====================================================
+             HERO
+             ===================================================== -->
+
+
+        <header class="games-hero">
+
+
+            <div class="games-hero-inner">
+
+
+
+                <!-- =============================================
+                     SOL TARAF
+                     ============================================= -->
+
+
+                <div class="hero-copy">
+
+
+                    <div class="hero-breadcrumb">
+
+
+                        <span>
+
+                            9. SINIF
+
+                        </span>
+
+
+                        <i></i>
+
+
+                        <span>
+
+                            1. ÜNİTE
+
+                        </span>
+
+
+                        <i></i>
+
+
+                        <span>
+
+                            2. KAZANIM
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <div class="game-label">
+
+
+                        <span
+                            class="game-label-icon"
+                            aria-hidden="true"
+                        >
+
+
+                            <svg viewBox="0 0 24 24">
+
+                                <circle
+                                    cx="11"
+                                    cy="11"
+                                    r="7"
+                                ></circle>
+
+                                <path d="m16 16 5 5"></path>
+
+                                <path d="M8 8h6"></path>
+
+                                <path d="M8 11h5"></path>
+
+                                <path d="M8 14h3"></path>
+
+                            </svg>
+
+
+                        </span>
+
+
+                        T.O.M. Oyun Merkezi
+
+
+                    </div>
+
+
+
+                    <h1>
+
+                        Kaynakların izini sür,
+
+                        <span>
+
+                            geçmişi çöz.
+
+                        </span>
+
+                    </h1>
+
+
+
+                    <p class="hero-description">
+
+                        Tarihî kaynakların türlerini, belgelerin nasıl incelendiğini
+                        ve tarihsel bilginin hangi izlerden hareketle oluşturulduğunu
+                        etkileşimli oyunlarla keşfet. Soruları çöz, kanıtları değerlendir
+                        ve geçmişin izlerini adım adım takip et.
+
+                    </p>
+
+
+
+                    <div class="hero-meta">
+
+
+                        <div class="hero-meta-item">
+
+                            <strong>
+
+                                Kazanım
+
+                            </strong>
+
+                            TAR.9.1.2
+
+                        </div>
+
+
+                        <div class="hero-meta-item">
+
+                            <span class="meta-dot"></span>
+
+                            5 Aktif Oyun
+
+                        </div>
+
+
+                        <div class="hero-meta-item">
+
+                            <strong>
+
+                                Düzey
+
+                            </strong>
+
+                            9. Sınıf
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =============================================
+                     SAĞ TARAF
+                     TARİHÎ KAYNAK GRAFİĞİ
+                     ============================================= -->
+
+
+                <div
+                    class="source-console"
+                    aria-hidden="true"
+                >
+
+
+                    <div class="source-ring one"></div>
+
+                    <div class="source-ring two"></div>
+
+                    <div class="source-ring three"></div>
+
+
+                    <div class="source-line"></div>
+
+                    <div class="source-line horizontal"></div>
+
+
+                    <span class="source-dot one"></span>
+
+                    <span class="source-dot two"></span>
+
+                    <span class="source-dot three"></span>
+
+
+
+                    <!-- BELGE -->
+
+
+                    <div class="source-document">
+
+
+                        <div class="document-title-line"></div>
+
+
+                        <div class="document-line"></div>
+
+                        <div class="document-line medium"></div>
+
+                        <div class="document-line"></div>
+
+                        <div class="document-line small"></div>
+
+                        <div class="document-line medium"></div>
+
+
+                        <div class="document-seal">
+
+                            T
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- BÜYÜTEÇ -->
+
+
+                    <div class="source-magnifier">
+
+
+                        <div class="magnifier-mark">
+
+
+                            <svg viewBox="0 0 24 24">
+
+                                <path d="M12 3v18"></path>
+
+                                <path d="M3 12h18"></path>
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="5"
+                                ></circle>
+
+                            </svg>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="source-caption">
+
+                        İncele • Çöz • Yorumla
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================================
+             OYUN LİSTESİ
+             ===================================================== -->
+
+
+        <section class="games-section">
+
+
+
+            <!-- =============================================
+                 BAŞLIK
+                 ============================================= -->
+
+
+            <div class="section-top">
+
+
+                <div class="section-heading">
+
+
+                    <span class="section-kicker">
+
+                        Oyun Kütüphanesi
+
+                    </span>
+
+
+                    <h2>
+
+                        Bir oyun seç ve kaynakların izini sür
+
+                    </h2>
+
+
+                    <p>
+
+                        Bu bölümde TAR.9.1.2 kazanımını destekleyen beş farklı oyun yer alır.
+                        Kaynak türlerini ayırt et, belgeleri çözümle, kavramları birleştir
+                        ve kanıtlardan doğru sonuçlara ulaş.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="game-counter">
+                    <span>Aktif Oyun</span>
+                    <strong>05</strong>
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =============================================
+                 OYUN GRID
+                 ============================================= -->
+
+
+            <div class="game-grid game-cover-grid">
+
+                <!-- 01 — KAYNAK DEDEKTİFİ -->
+                <article class="game-card game-cover-card" style="--game-rgb:116,201,211; --game-color:var(--tom-cyan);">
+                    <div class="game-cover-wrap">
+                        <div class="game-cover-fallback" aria-hidden="true">
+                            <span class="cover-number">01</span>
+                            <strong>Kaynak Dedektifi</strong>
+                            <small>Kapak görseli</small>
+                        </div>
+                        <img class="game-cover-image" src="kapak1.jpg" alt="Kaynak Dedektifi kapak görseli">
+                    </div>
+                    <button class="game-open-btn" type="button" data-game="1" aria-label="Kaynak Dedektifi oyun detaylarını aç">
+                        <span class="game-start-dot"></span>
+                        <span>Oyuna Git</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                    </button>
+                </article>
+
+                <!-- 02 — İZ PEŞİNDE -->
+                <article class="game-card game-cover-card" style="--game-rgb:214,179,106; --game-color:var(--tom-gold);">
+                    <div class="game-cover-wrap">
+                        <div class="game-cover-fallback" aria-hidden="true">
+                            <span class="cover-number">02</span>
+                            <strong>İz Peşinde</strong>
+                            <small>Kapak görseli</small>
+                        </div>
+                        <img class="game-cover-image" src="kapak2.jpg" alt="İz Peşinde kapak görseli">
+                    </div>
+                    <button class="game-open-btn" type="button" data-game="2" aria-label="İz Peşinde oyun detaylarını aç">
+                        <span class="game-start-dot"></span>
+                        <span>Oyuna Git</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                    </button>
+                </article>
+
+                <!-- 03 — KANIT ODASI -->
+                <article class="game-card game-cover-card" style="--game-rgb:131,201,164; --game-color:var(--tom-green);">
+                    <div class="game-cover-wrap">
+                        <div class="game-cover-fallback" aria-hidden="true">
+                            <span class="cover-number">03</span>
+                            <strong>Kanıt Odası</strong>
+                            <small>Kapak görseli</small>
+                        </div>
+                        <img class="game-cover-image" src="kapak3.jpg" alt="Kanıt Odası kapak görseli">
+                    </div>
+                    <button class="game-open-btn" type="button" data-game="3" aria-label="Kanıt Odası oyun detaylarını aç">
+                        <span class="game-start-dot"></span>
+                        <span>Oyuna Git</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                    </button>
+                </article>
+
+                <!-- 04 — TARİH LABORATUVARI -->
+                <article class="game-card game-cover-card" style="--game-rgb:165,221,227; --game-color:var(--tom-cyan-light);">
+                    <div class="game-cover-wrap">
+                        <div class="game-cover-fallback" aria-hidden="true">
+                            <span class="cover-number">04</span>
+                            <strong>Tarih Laboratuvarı</strong>
+                            <small>Kapak görseli</small>
+                        </div>
+                        <img class="game-cover-image" src="kapak4.jpg" alt="Tarih Laboratuvarı kapak görseli">
+                    </div>
+                    <button class="game-open-btn" type="button" data-game="4" aria-label="Tarih Laboratuvarı oyun detaylarını aç">
+                        <span class="game-start-dot"></span>
+                        <span>Oyuna Git</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                    </button>
+                </article>
+
+                <!-- 05 — GERÇEK Mİ İZ Mİ -->
+                <article class="game-card game-cover-card" style="--game-rgb:239,213,154; --game-color:var(--tom-gold-light);">
+                    <div class="game-cover-wrap">
+                        <div class="game-cover-fallback" aria-hidden="true">
+                            <span class="cover-number">05</span>
+                            <strong>Gerçek mi İz mi</strong>
+                            <small>Kapak görseli</small>
+                        </div>
+                        <img class="game-cover-image" src="kapak5.jpg" alt="Gerçek mi İz mi kapak görseli">
+                    </div>
+                    <button class="game-open-btn" type="button" data-game="5" aria-label="Gerçek mi İz mi oyun detaylarını aç">
+                        <span class="game-start-dot"></span>
+                        <span>Oyuna Git</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                    </button>
+                </article>
+
+            </div>
+
+            <!-- EKRAN ÜZERİNDE BÜYÜYEREK AÇILAN OYUN DETAY MODALI -->
+            <div class="game-detail-shell" id="gameDetailShell" aria-hidden="true">
+                <div class="game-detail-panel" id="gameDetailPanel" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+                    <button class="detail-close" id="detailClose" type="button" aria-label="Oyun detay panelini kapat">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6 6 18"></path></svg>
+                    </button>
+
+                    <div class="detail-cover">
+                        <div class="detail-cover-fallback" id="detailCoverFallback" aria-hidden="true">
+                            <span id="detailNumber">01</span>
+                            <strong id="detailFallbackTitle">Oyun</strong>
+                        </div>
+                        <img id="detailCoverImage" src="" alt="">
+                    </div>
+
+                    <div class="detail-content">
+                        <div class="detail-kicker">T.O.M. • OYUN DETAYI</div>
+                        <h3 id="detailTitle">Oyun Adı</h3>
+
+                        <div class="detail-section">
+                            <span class="detail-label">Tanım</span>
+                            <p id="detailDescription"></p>
+                        </div>
+
+                        <div class="detail-section">
+                            <span class="detail-label">Nasıl Oynanır?</span>
+                            <p id="detailHowTo"></p>
+                        </div>
+
+                        <div class="detail-credits">
+                            <div class="detail-credit">
+                                <span>Soru Yazarı</span>
+                                <strong id="detailQuestionWriter"></strong>
+                            </div>
+                            <div class="detail-credit">
+                                <span>Oyunu Hazırlayan</span>
+                                <strong id="detailDesigner"></strong>
+                            </div>
+                        </div>
+
+                        <a id="detailStart" class="detail-start-btn" href="#" target="_blank" rel="noopener noreferrer">
+                            <span>Oyunu Başlat</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-note">
+
+
+                <span
+                    class="page-note-icon"
+                    aria-hidden="true"
+                >
+
+
+                    <svg viewBox="0 0 24 24">
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        ></circle>
+
+                        <path d="M12 10v6"></path>
+
+                        <path d="M12 7h.01"></path>
+
+                    </svg>
+
+
+                </span>
+
+
+                <span>
+
+                    Bu bölümdeki oyunlar doğrudan
+
+                    <strong style="color:#aeb6bd;">
+
+                        TAR.9.1.2
+
+                    </strong>
+
+                    kazanımına yönelik hazırlanmıştır.
+                    Oyunlar; tarihî kaynakları tanıma, kaynak türlerini ayırt etme,
+                    belge inceleme ve kanıtlardan çıkarım yapma becerilerini
+                    destekleyecek şekilde tasarlanmıştır.
+
+                </span>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FOOTER
+             ===================================================== -->
+
+
+        <footer class="unit-footer">
+
+
+            <div>
+
+                © 2026 Tarih Oyun Merkezi
+
+            </div>
+
+
+            <div class="teacher">
+
+                Bölüm Soru Yazarımız: İsmail ÖZER
+
+            </div>
+
+
+            <div class="footer-right">
+
+                <span>
+
+                    T.O.M.
+
+                </span>
+
+            </div>
+
+
+        </footer>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+(function () {
+    const games = {
+        "1": {
+            number: "01",
+            title: "Kaynak Dedektifi",
+            cover: "kapak1.jpg",
+            href: "oyun-9.1.2.1.html",
+            description: "Oyunun başlangıcında oyuncu veya takım, içerisinde hangi ödülün bulunduğu bilinmeyen kutulardan birini kendi kutusu olarak seçer. Diğer kutular farklı turlarda sırayla açılır ve açılan kutuların içerisindeki puan değerleri oyun tablosundan çıkarılır. Belirli sayıda kutu açıldıktan sonra oyun durur ve takıma bir tarih sorusu yöneltilir. Sorunun doğru cevaplanması, teklif değerini artırabilir, bir kutuyu koruma hakkı verebilir veya ek bir avantaj sağlayabilir. Bazı sorular doğrudan bilgi ölçerken bazıları neden-sonuç, karşılaştırma, tarihsel çıkarım veya yorumlama gerektirebilir. Her turun sonunda sistem, geriye kalan kutuların değerlerine göre takıma yeni bir teklif sunar. Takım ister teklifi kabul ederek oyunu bitirir, ister “Yokum” diyerek kutuları açmaya devam eder. Risk arttıkça kazanılabilecek puan da değişir. Oyunun sonunda takım ya kabul ettiği teklifi ya da başlangıçta seçtiği kutunun içerisindeki değeri kazanır. Böylece tarih bilgisi, karar verme, risk değerlendirme ve takım içi tartışmayla birleşir.",
+            howTo: "Başlangıçta kendi kutunu seç ve diğer kutuları sırayla aç. Belirli turlarda gelen tarih sorularını doğru cevaplayarak avantaj kazan. Her teklif geldiğinde takımınla karar ver: Teklifi kabul edip oyunu bitir ya da devam ederek daha yüksek puanı hedefle.",
+            designer: "Oğuz GÖK",
+            questionWriter: "İsmail ÖZER"
+        },
+        "2": {
+            number: "02",
+            title: "İz Peşinde",
+            cover: "kapak2.jpg",
+            href: "oyun-9.1.2.2.html",
+            description: "Bu oyun daha çok Adam Asmaca + risk + takım rekabeti mantığındadır. Kavramın kısa tanımı verilir; takımlar harf açar, doğrudan kelimeyi tahmin eder veya daha yüksek puan için risk alır. Yanlış tahminde rakibe çalma fırsatı doğar; yanlış harfler can ve puan kaybettirir. Buradaki önemli fark şudur: Her kavram için üç özel ipucu hazırlamaya gerek yoktur. Kod; kategori ve harf sayısını, kelime sayısı ve ilk harfi, ardından da rastgele bir harfi otomatik olarak ipucuna dönüştürür.",
+            howTo: "İpuçlarını çöz, kayıp yazıtın parçalarını ortaya çıkar ve geçmişten gelen mesajı tamamla. Her doğru cevap seni çözüme biraz daha yaklaştırır.",
+            designer: "Oğuz GÖK",
+            questionWriter: "İsmail ÖZER"
+        },
+        "3": {
+            number: "03",
+            title: "Kanıt Odası",
+            cover: "kapak3.jpg",
+            href: "oyun-9.1.2.3.html",
+            description: "Takım önce çarkı çevirir; çarktan gelen puan o sorunun değeri olur ve ardından tarih sorusu açılır. Yanlış cevapta aynı soru sıradaki takıma geçer ve o takım yeniden çark çevirir; iki takım da bilemezse cevap gösterilir. Çarkta puanların yanında 2 Pas, 1 İflas ve 1 adet 2X bulunur. Soru bankası kolay, orta ve zor düzeylere ayrılmış kısa cevaplı ve alternatif cevapları tanımlanmış sorulardan oluşur.",
+            howTo: "Çarkı çevir, şansını dene ve karşına çıkan soruyu cevapla. Puanlar, sürprizler ve riskler her tur oyunun gidişatını değiştirebilir.",
+            designer: "Oğuz GÖK",
+            questionWriter: "İsmail ÖZER"
+        },
+        "4": {
+            number: "04",
+            title: "Tarih Laboratuvarı",
+            cover: "kapak4.jpg",
+            href: "oyun-9.1.2.4.html",
+            description: "Takımlar sırayla tarih sorusu cevaplayarak 24 adımlık keşif yolunda ilerler. Doğru cevap normalde +1 adım getirir; belirli noktalardaki sandıklardan +1/+2 hareket, kalkan, özel güç, geri gitme veya boş sandık gibi sonuçlar çıkabilir. Kaleye ulaşmak yetmez; takımın bir final sorusunu da doğru cevaplaması gerekir. Oyun 80 soruluk ortak bir havuzu karıştırarak kullanır.",
+            howTo: "Haritada ilerle, engelleri aş ve doğru cevaplarla kaleye yaklaş. Yol boyunca seni sürprizler, riskler ve farklı görevler bekliyor.",
+            designer: "Oğuz GÖK",
+            questionWriter: "İsmail ÖZER"
+        },
+        "5": {
+            number: "05",
+            title: "Gerçek mi İz mi",
+            cover: "kapak5.jpg",
+            href: "oyun-9.1.2.5.html",
+            description: "Ekrana geniş cevap alanı olan bir tarih sorusu gelir ve her sorunun 5 farklı kabul edilen cevabı bulunur. Takım 60 saniye boyunca doğru cevap verdikçe devam eder; yanlış cevapta sıra diğer takıma geçer ve bulunan cevaplar puanlarıyla birlikte açılır. Mevcut sürümde 10 soru vardır. Her sorunun tam olarak 5 cevabı bulunur ve bu beş cevabın puan toplamı 100 olacak şekilde düzenlenmiştir.",
+            howTo: "Sorulan soruya en çok verilen cevapları tahmin etmeye çalış. Doğru tahminler puan kazandırırken beklenmedik cevaplar oyunun heyecanını artırır.",
+            designer: "Oğuz GÖK",
+            questionWriter: "İsmail ÖZER"
+        }
+    };
+
+    const shell = document.getElementById("gameDetailShell");
+    const panel = document.getElementById("gameDetailPanel");
+    const closeButton = document.getElementById("detailClose");
+    const title = document.getElementById("detailTitle");
+    const description = document.getElementById("detailDescription");
+    const howTo = document.getElementById("detailHowTo");
+    const designer = document.getElementById("detailDesigner");
+    const questionWriter = document.getElementById("detailQuestionWriter");
+    const startButton = document.getElementById("detailStart");
+    const detailImage = document.getElementById("detailCoverImage");
+    const detailNumber = document.getElementById("detailNumber");
+    const fallbackTitle = document.getElementById("detailFallbackTitle");
+    let lastTrigger = null;
+
+    document.querySelectorAll(".game-cover-image").forEach(function (img) {
+        img.addEventListener("error", function () {
+            img.classList.add("is-missing");
+        });
+    });
+
+    function openGame(gameId, trigger) {
+        const game = games[gameId];
+        if (!game) return;
+
+        lastTrigger = trigger;
+        title.textContent = game.title;
+        description.textContent = game.description;
+        howTo.textContent = game.howTo;
+        designer.textContent = game.designer || "";
+        questionWriter.textContent = game.questionWriter || "";
+        startButton.href = game.href;
+        detailNumber.textContent = game.number;
+        fallbackTitle.textContent = game.title;
+        detailImage.alt = game.title + " kapak görseli";
+        detailImage.classList.remove("is-missing");
+        detailImage.src = game.cover;
+
+        const card = trigger.closest(".game-card");
+        if (card) {
+            const styles = getComputedStyle(card);
+            const rgb = styles.getPropertyValue("--game-rgb").trim();
+            const color = styles.getPropertyValue("--game-color").trim();
+            if (rgb) panel.style.setProperty("--modal-rgb", rgb);
+            if (color) panel.style.setProperty("--modal-color", color);
+        }
+
+        document.body.classList.add("game-modal-open");
+        shell.classList.add("is-open");
+        shell.setAttribute("aria-hidden", "false");
+        closeButton.focus({ preventScroll: true });
+    }
+
+    function closePanel() {
+        shell.classList.remove("is-open");
+        shell.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("game-modal-open");
+        if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+    }
+
+    document.querySelectorAll(".game-open-btn").forEach(function (button) {
+        button.addEventListener("click", function (event) {
+            event.stopPropagation();
+            openGame(button.dataset.game, button);
+        });
+    });
+
+    document.querySelectorAll(".game-cover-card").forEach(function (card) {
+        const button = card.querySelector(".game-open-btn");
+        if (!button) return;
+
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("aria-label", button.getAttribute("aria-label") || "Oyun detaylarını aç");
+
+        card.addEventListener("click", function (event) {
+            if (event.target.closest(".game-open-btn")) return;
+            openGame(button.dataset.game, card);
+        });
+
+        card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openGame(button.dataset.game, card);
+            }
+        });
+    });
+
+    detailImage.addEventListener("error", function () {
+        detailImage.classList.add("is-missing");
+    });
+
+    closeButton.addEventListener("click", closePanel);
+
+    shell.addEventListener("click", function (event) {
+        if (event.target === shell) closePanel();
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && shell.classList.contains("is-open")) {
+            closePanel();
+        }
+    });
+})();
+</script>
+
+
+</body>
+
+</html>
